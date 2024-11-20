@@ -1,0 +1,68 @@
+.footer {
+  background-color: #254a6f;
+  color: white;
+  padding: 20px;
+  font-size: large;
+}
+
+.list-menu {
+  list-style-type: none;
+  text-align: left;
+}
+li {
+  margin-top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.item,
+.item a {
+  color: rgb(165, 163, 163);
+}
+a {
+  color: rgb(202, 195, 195);
+  font-weight: 600;
+}
+a:hover {
+  color: orangered;
+}
+
+strong {
+  color: white;
+}
+
+.col-footer .list-menu {
+  text-align: left;
+}
+
+.col-footer .list-menu ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.col-footer .list-menu li a {
+  display: block;
+  text-align: left;
+}
+
+a img {
+  margin-left: 5px;
+}
+
+.list-social {
+  margin-bottom: 10px;
+}
+
+.product-trustbadge {
+  color: rgb(202, 195, 195);
+}
+.wsp {
+  margin-top: 2px;
+  color: white;
+  background-color: #436a91;
+  padding: 15px;
+  text-align: center;
+}

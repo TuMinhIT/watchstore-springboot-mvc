@@ -1,0 +1,41 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+
+<body layout:fragment="content">
+<link rel="stylesheet" th:href="@{~/css/detail.css}">
+
+<div class=" container mt-3">
+    <h2 th:text="${'Tìm kiếm với: '+ productName}" style="color: #2a1919"> </h2>
+    <div class="product-container row" style="margin-bottom: 100px" >
+        <div th:each="product : ${searchProducts}" class="product col-lg-3 col-md-4 col-sm-6 mt-3">
+            <div th:object="${product}" >
+                <div class="product-image">
+                    <span class="discount-badge" th:text="${product.getDiscount()} + '%'"></span>
+                    <img th:src="@{/{image}(image=${product.image})}" alt="đồng hồ">
+
+                    <div class="product-icons">
+                        <a class="icon" th:href="@{/cart/detail/{id}(id=${product.id})}"><img src="/images/bag-plus-fill.svg" alt="Add to cart"></a>
+                        <a class="icon" th:href="@{/home/product/{id}(id=${product.id})}">
+                            <img src="/images/eye.svg" alt="View details">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-details">
+                <a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}" class="product-name">Đồng hồ Rolex</a>
+
+                <div class="product-price">
+                    <!-- Old Price and New Price -->
+                    <span class="old-price" th:text="${product.oldPrice} + 'đ'">6.500.000đ</span>
+                    <span class="new-price" th:text="${product.newPrice} + 'đ'">5.590.000đ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

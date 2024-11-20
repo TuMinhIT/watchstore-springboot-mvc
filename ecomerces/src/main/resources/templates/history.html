@@ -1,0 +1,190 @@
+
+<history>
+
+    <style>
+
+
+        .tab-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: #333;
+            width: 500px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px 10px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            background-color: #555;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            background-color: #ff6600;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+
+            border-top: none;
+        }
+
+        .tabs-box {
+            border: 1px solid #ddd;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+<div class="container mt-5">
+    <h3 style="text-align: center">Lịch sử mua hàng</h3>
+    <div class="tab-container">
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="openTab('waiting')">Chờ xác nhận</div>
+            <div class="tab" onclick="openTab('bought')">Đã mua</div>
+            <div class="tab" onclick="openTab('cancel')">Cancel</div>
+        </div>
+
+        <div class="tabs-box">
+            <div id="waiting" class="tab-content active">
+                <table th:object="${Wait}" class="table">
+                    <thead>
+                    <tr style="background-color: #d7e0ea">
+                        <th>Sản phẩm</th>
+                        <th>Thanh toán</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="order : ${Wait}">
+                    <tr>
+                        <td>
+                            <div th:each="cartItem : ${order.getCart().getCartItems()}">
+                                <div class="product-info" style="display: flex">
+                                    <img  th:src="@{/{image}(image=${cartItem.getProduct().getImage()})}" alt="Sản phẩm">
+                                    <div class="product-details" th:text="${cartItem.getProduct().getName()}"><p >Tên sản phẩm</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-around; margin-top: 10px">
+                                    <p class="price" th:text="${cartItem.getPrice()}">
+                                        2.250.000₫
+                                    </p>
+                                    <p class="quantity" th:text="${'x '+cartItem.getQuantity()}" >
+                                        x1
+                                    </p>
+                                    <p class="total-price"  th:text="${cartItem.TotalPrice()}" >
+                                        2.250.000₫
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td >
+                            <p>Tổng cộng thanh toán <span style="color: #f43d08; font-size: 16px" th:text="${order.getPayment_amount()}+'₫'"> 50000 VND</span>  </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div id="bought" class="tab-content">
+                <table th:object="${Complete}" class="table">
+                    <thead>
+                    <tr style="background-color: #d7e0ea">
+                        <th>Sản phẩm</th>
+                        <th>Thanh toán</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="order : ${Complete}">
+                    <tr>
+                        <td>
+                            <div th:each="cartItem : ${order.getCart().getCartItems()}">
+                                <div class="product-info" style="display: flex">
+<!--                                    <img  th:src="@{/{image}(image=${cartItem.getProduct().getImage()})}" alt="Sản phẩm">-->
+                                    <div class="product-details" th:text="${cartItem.getProduct().getName()}"><p >Tên sản phẩm</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-around; margin-top: 10px">
+                                    <p class="price" th:text="${cartItem.getPrice()}">
+                                        2.250.000₫
+                                    </p>
+                                    <p class="quantity" th:text="${'x '+cartItem.getQuantity()}" >
+                                        x1
+                                    </p>
+                                    <p class="total-price"  th:text="${cartItem.TotalPrice()}" >
+                                        2.250.000₫
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td >
+                            <p>Tổng cộng thanh toán <span style="color: #f43d08; font-size: 16px" th:text="${order.getPayment_amount()}+'₫'"> 50000 VND</span>  </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="cancel" class="tab-content active">
+                <table th:object="${Cancel}" class="table">
+                    <thead>
+                    <tr style="background-color: #d7e0ea">
+                        <th>Sản phẩm</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="order : ${Cancel}">
+                    <tr>
+                        <td>
+                            <div th:each="cartItem : ${order.getCart().getCartItems()}">
+                                <div class="product-info" style="display: flex">
+<!--                                    <img  th:src="@{/{image}(image=${cartItem.getProduct().getImage()})}" alt="Sản phẩm">-->
+                                    <div class="product-details" th:text="${cartItem.getProduct().getName()}"><p >Tên sản phẩm</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: space-around; margin-top: 10px">
+                                    <p class="price" th:text="${cartItem.getPrice()}">
+                                        2.250.000₫
+                                    </p>
+                                    <p class="quantity" th:text="${'x '+cartItem.getQuantity()}" >
+                                        x1
+                                    </p>
+                                    <p class="total-price"  th:text="${cartItem.TotalPrice()}" >
+                                        2.250.000₫
+                                    </p>
+                                </div>
+                            </div>
+                            <p>Tổng <span style="color: #f43d08; font-size: 16px" th:text="${order.getPayment_amount()}+'₫'"> 50000 VND</span>  </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        function openTab(tabId) {
+
+            var contents = document.querySelectorAll('.tab-content');
+            contents.forEach(function (content) {
+                content.classList.remove('active');
+            });
+
+            var tabs = document.querySelectorAll('.tab');
+            tabs.forEach(function (tab) {
+                tab.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector('.tab[onclick="openTab(\'' + tabId + '\')"]').classList.add('active');
+        }
+    </script>
+</history>

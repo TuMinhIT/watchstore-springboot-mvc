@@ -1,0 +1,123 @@
+
+.confirmOrder .container {
+    max-width: 90%;
+    margin: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirmOrder h2 {
+    text-align: center;
+    color: #d1820c;
+}
+
+.order-header {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+/* Header styling */
+thead th {
+    background-color: #f8f8f8;
+    color: #06122c;
+    font-weight: bold;
+}
+
+/* Customer information styling */
+.customer-info div {
+    margin-bottom: 5px;
+    max-width: 200px;
+}
+
+/* Product info styling */
+.product-info img {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.product-info .product-details {
+    font-size: 16px;
+}
+
+.price, .quantity, .total-price {
+    font-weight: bold;
+    color: #ec590a;
+}
+
+/* Total row styling */
+.total-row td {
+    font-weight: bold;
+    background-color: #f4f4f4;
+}
+
+/* Action buttons styling */
+.action-btn {
+    display: block;
+    width: 50%;
+    margin: 5px auto;
+    padding: 8px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.action{
+    width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+.confirm-btn {
+    background-color: #4CAF50; /* Green for confirm */
+}
+
+.confirm-btn:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    background-color: #f44336; /* Red for delete */
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    table, th, td {
+        font-size: 14px;
+    }
+
+    .product-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .action-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,127 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+
+<body layout:fragment="content">
+<link rel="stylesheet" th:href="@{~/css/detail.css}">
+<style>
+
+    /*on topp  */
+    .account .bread-crumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        position: relative;
+    }
+
+    .account .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: #f43d08;
+    }
+
+    .account .title-breadcrumb {
+        margin-bottom: 10px;
+        font-size: 30px;
+        font-weight: bold;
+        color: #ed0c0c;
+    }
+
+    .account .breadcrumb {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        font-size: large;
+    }
+    .breadcrumb-item a.custom-link {
+        color: #131111;
+        text-decoration: none;
+    }
+    .breadcrumb-item a.custom-link:hover {
+        color: blue;
+        font-size: larger;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+        content: "->";
+        padding: 0 5px;
+        color: #ed0707;
+    }
+
+    .description  .text{
+        color: #0a0303;
+        border: 1px solid silver;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+</style>
+<div th:object="${brand}" class="account">
+    <section class="bread-crumb img" th:style="'background-image: url(' + @{/{image}(image=${brand.image})} + ')'" >
+        <div class="text">
+            <div class="title-breadcrumb">
+                Thương hiệu
+            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home" class="custom-link">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page">
+                       <span th:text="${brand.name}">Thương hiệu</span>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="description mt-3">
+            <h3>
+                <span th:text="${brand.name}">Name</span>
+            </h3>
+        <p class="text"  th:text="${brand.getDescription()}"></p>
+        </div>
+    </div>
+</div>
+<div class=" container mt-3">
+    <h2>Sản phẩm cùng thương hiệu</h2>
+    <div class="product-container row" >
+        <div th:each="product : ${productList}" class="product col-lg-3 col-md-4 col-sm-6 mt-3">
+            <div th:object="${product}" >
+                <div class="product-image">
+                    <span class="discount-badge" th:text="${product.getDiscount()} + '%'"></span>
+                    <img th:src="@{/{image}(image=${product.image})}" alt="đồng hồ">
+
+                    <div class="product-icons">
+                        <a class="icon" th:href="@{/cart/detail/{id}(id=${product.id})}"><img src="/images/bag-plus-fill.svg" alt="Add to cart"></a>
+                        <a class="icon" th:href="@{/home/product/{id}(id=${product.id})}">
+                            <img src="/images/eye.svg" alt="View details">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-details">
+                <a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}" class="product-name">Đồng hồ Rolex</a>
+
+                <div class="product-price">
+                    <!-- Old Price and New Price -->
+                    <span class="old-price" th:text="${product.oldPrice} + 'đ'">6.500.000đ</span>
+                    <span class="new-price" th:text="${product.newPrice} + 'đ'">5.590.000đ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

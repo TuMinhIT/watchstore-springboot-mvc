@@ -1,0 +1,119 @@
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin: 20px 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Phong cách hiển thị thông tin sản phẩm */
+.container div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+p {
+    margin: 0;
+}
+
+p strong {
+    color: #555;
+    font-weight: 600;
+}
+
+span {
+    color: #000;
+    font-weight: 500;
+}
+
+/* Phong cách giá sản phẩm */
+.price {
+    display: flex;
+    gap: 10px;
+    font-size: 1.2em;
+}
+
+.old-price {
+    color: #888;
+}
+
+.new-price {
+    color: #e60000;
+    font-weight: bold;
+}
+
+/* Phong cách cho ảnh */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+
+.details:last-of-type {
+    border-bottom: none;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.product-details{
+    display: flex;
+}
+
+.product-details .image{
+    padding: 30px 30px;
+    align-items: center;
+    left: 20px;
+}
+
+.image-container{
+    margin-top: 40px;
+    padding-left: 50px;
+}
+
+.edit{
+    margin-top: 30px;
+}
+.btn-edit{
+    margin-left: 30px;
+}
+
+.product-image:hover {
+    transform: scale(1.2);
+    z-index: 10;
+}

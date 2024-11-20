@@ -1,0 +1,191 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+
+<body layout:fragment="content">
+
+<style>
+
+   .contact{
+       background-color: #f4f4f4;
+   }
+
+    .contact .container {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        padding: 20px;
+    }
+
+   .contact  #contact h {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2em;
+        color: #333;
+    }
+
+    .contact-info {
+        margin-bottom: 20px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .contact-info p {
+        margin: 5px 0;
+        font-size: 1.1em;
+    }
+
+    .contact-info a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .contact-form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form h3 {
+        margin-bottom: 10px;
+        font-size: 1.5em;
+        color: #333;
+    }
+
+    .contact-form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+    }
+
+    .contact-form button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+    }
+
+    .contact-form button:hover {
+        background-color: #0056b3;
+    }
+
+   .bread-crumb {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 300px;
+       background-size: cover;
+       background-position: center;
+       background-repeat: no-repeat;
+       text-align: center;
+       position: relative;
+   }
+
+   .text {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       width: 100%;
+       color: #fff;
+   }
+
+   .title-breadcrumb {
+       margin-bottom: 10px;
+       font-size: 30px;
+       font-weight: bold;
+       color: #fff;
+   }
+
+   .breadcrumb {
+       padding: 0;
+       margin: 0;
+       display: flex;
+       justify-content: center;
+       font-size: large;
+   }
+   .breadcrumb-item a.custom-link {
+       color: #fff;
+       text-decoration: none;
+   }
+   .breadcrumb-item a.custom-link:hover {
+       color: blue;
+       font-size: larger;
+   }
+
+   .breadcrumb-item + .breadcrumb-item::before {
+       content: "->";
+       padding: 0 5px;
+       color: #ed0707;
+   }
+</style>
+
+<body>
+<section class="bread-crumb img" style="background-image: url('/images/bg-1.jpg')">
+    <div class="text">
+        <div class="title-breadcrumb">
+            Liên hệ với chúng tôi
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home" class="custom-link">Trang chủ</a></li>
+                <li class="breadcrumb-item" aria-current="page">
+                    <span>Liên hệ</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<div class="contact">
+    <section id="contact">
+        <div class="container">
+            <div class="contact-info">
+                <h3>Cửa hàng đồng hồ SpringCommerce</h3>
+                <p>Địa chỉ: 165 Âu Dương Lân, Phường 2, Quận 8, Tp Hồ Chí Minh</p>
+                <p>Email: <a href="mailto:springcom.vn">SpringCommerce@gmail.vn</a></p>
+                <p>Hotline: <a href="tel:19006750">1900 1101</a></p>
+            </div>
+            <div class="contact-form">
+                <h3>Gửi yêu cầu</h3>
+                <p>Nếu bạn có thắc mắc gì, có thể gửi yêu cầu cho chúng tôi, và chúng tôi sẽ liên lạc lại với bạn sớm
+                    nhất có thể.</p>
+                <form action="#" method="POST">
+                    <label for="name">Họ và tên:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Nội dung yêu cầu:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+
+                    <button type="submit">Gửi yêu cầu</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+</body>

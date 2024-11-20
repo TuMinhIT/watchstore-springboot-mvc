@@ -1,0 +1,204 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+<body layout:fragment="content">
+<link rel="stylesheet" th:href="@{/css/alert.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<div class="main">
+    <div class="container-fluid">
+        <div class="slideshow-container">
+            <div class="Slides fades">
+                <img src="/images/slide4.jpg" alt="">
+                <div style="text-align:center" class="dot-container">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <div class="Slides fades">
+                <img src="/images/slide1.jpg" alt="">
+                <div style="text-align:center" class="dot-container">
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+
+            <div class="Slides fades">
+                <img src="/images/slide2.jpg">
+                <div style="text-align:center" class="dot-container">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                </div>
+            </div>
+            <div class="Slides fades">
+                <img src="/images/slide3.jpg">
+                <div style="text-align:center" class="dot-container">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot active"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container ps">
+        <h3> Danh mục thương hiệu</h3>
+        <div class="ps-slider">
+            <div class="ps-slides">
+                <div th:each="brand : ${session.brands}" class="ps-slide">
+                    <img th:src="@{/{image}(image=${brand.image})}" alt="brand">
+                    <a th:href="@{/home/brand/{id}(id=${brand.id})}" class="ps-overlay" th:text="${brand.name}">Sản phẩm 1</a>
+                </div>
+            </div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)"></button>
+        <button class="next" onclick="moveSlide(1)"></button>
+    </div>
+
+    <div class="container">
+        <div class="about">
+            <section class="section_about">
+
+                <div class="row align-items-center">
+                    <h2>Về chúng tôi</h2>
+                    <div class="col-lg-6 col-12">
+                        <div class="about-image">
+                            <img class="lazyload img-fluid loaded" width="720" height="550" src="/images/dongho.jpg"
+                                alt="Lofi Furniture" data-was-processed="true">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="about-info">
+                            <h2 class="title">Tìm hiểu thêm về chúng tôi và lý do tại sao nên chọn chúng tôi</h2>
+                            <div class="desc">Với mong muốn mang đến cho khách hàng những sản phẩm thời trang
+                                chính
+                                hãng từ các hãng sản xuất trong và ngoài nước. Chúng tôi luôn lắng nghe và đưa ra
+                                cho khách hàng
+                                những lời khuyên, lời chia sẻ chân thành. Cùng với đó là quy trình mua hàng, giao
+                                hàng nhanh
+                                chóng, thuận tiện cho khách hàng.</div>
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="/images/check2-square.svg" alt="check">
+                                </div>
+                                <div class="info">
+                                    Chất lượng hàng đầu
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="/images/check2-square.svg" alt="check">
+                                </div>
+                                <div class="info">
+                                    Sang trọng quý phái
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="/images/check2-square.svg" alt="check">
+                                </div>
+                                <div class="info">
+                                    Giá tốt
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="icon">
+                                    <img src="/images/check2-square.svg" alt="check">
+                                </div>
+                                <div class="info">
+                                    Hỗ trợ của Chuyên gia
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+<!--    -->
+    <div th:if="${success}" class="alert-add-to-cart" style="display: block;">
+        <div id="success" class="success">
+            Sản phẩm đã được thêm vào giỏ hàng thành công!
+        </div>
+        <div class="goto-cart">
+            <a  th:href="@{/cart}" class="btn">Đi tới giỏ hàng</a>
+        </div>
+    </div>
+
+    <div th:if="${SearchError}" class="alert-add-to-cart alert-danger" style="width: 300px; height: 80px; background-color: #2d90ec">
+        <div id="error" class="success" style="color: white;font-size: 16px">
+            Không tìm thấy sản phẩm!
+        </div>
+    </div>
+<!--    -->
+    <div class="product-tap">
+        <section class="section_product_tab">
+            <div class="container">
+                <div class="content">
+                    <div class="block-title">
+                        <h2>Sản phẩm</h2>
+                        <div class="block-brand">
+                            <ul  th:each="brand : ${session.brands}">
+                                <li class="tab-link" data-url="/rolex">
+                                    <a th:href="@{/home/brand/{id}(id=${brand.id})}" class="brand"  th:text="${brand.name}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="product-container row" >
+                        <div th:each="product : ${productList}" class="product col-lg-3 col-md-4 col-sm-6 mt-3">
+                            <div th:object="${product}" >
+                                <div class="product-image">
+                                    <span class="discount-badge" th:text="${product.getDiscount()} + '%'"></span>
+                                    <img th:src="@{/{image}(image=${product.image})}" alt="đồng hồ">
+                                    <div class="product-icons">
+
+                                        <a class="icon"  th:href="@{/cart/addToCart/{id}(id=${product.id})}">
+                                            <img src="/images/bag-plus-fill.svg" alt="Add to cart">
+                                        </a>
+                                        <a class="icon" th:href="@{/home/product/{id}(id=${product.id})}">
+                                            <img src="/images/eye.svg" alt="View details">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <a th:href="@{/home/product/{id}(id=${product.id})}" th:text="${product.name}" class="product-name">Đồng hồ Rolex</a>
+
+                                <div class="product-price">
+                                    <!-- Old Price and New Price -->
+                                    <span class="old-price" th:text="${product.oldPrice} + 'đ'">6.500.000đ</span>
+                                    <span class="new-price" th:text="${product.newPrice} + 'đ'">5.590.000đ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+    <script th:src="@{/js/alert.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function () {
+        var successMessage = document.getElementById('error');
+        var alertDiv = successMessage.closest('.alert-add-to-cart');
+
+        if (successMessage) {
+            setTimeout(function () {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+    });
+</script>
+</body>
+</html>

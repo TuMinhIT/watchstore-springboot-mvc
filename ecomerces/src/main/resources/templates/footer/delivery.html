@@ -1,0 +1,71 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+
+<body layout:fragment="content">
+<style>
+  .content-page {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .content-page p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 15px;
+  }
+
+  .content-page ul {
+    margin-left: 20px;
+    padding-left: 20px;
+  }
+
+  .content-page ul li {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .content-page ul li strong {
+    color: #007bff; /* Màu cho tiêu đề danh sách */
+  }
+
+  /* Responsive cho màn hình nhỏ */
+  @media (max-width: 768px) {
+    .content-page {
+      padding: 15px;
+    }
+
+    .content-page p,
+    .content-page ul li {
+      font-size: 14px;
+    }
+  }
+
+</style>
+<div class="content-page rte">
+  <p>Lofi Furniture có dịch vụ giao hàng tận nơi trên toàn quốc cho khách hàng mua hàng qua website, fanpage hoặc điện thoại, không áp dụng cho khách mua trực tiếp tại cửa hàng.</p>
+
+  <p><strong>1. Thời gian giao hàng:</strong></p>
+  <ul>
+    <li><strong>Nội và ngoại thành Hà Nội:</strong>
+      <p>1-2 ngày sau khi đặt hàng. Đơn hàng trước 11h30 giao trong buổi chiều cùng ngày, sau 11h30 giao trong buổi tối hoặc sáng hôm sau.</p>
+    </li>
+    <li><strong>Các tỉnh thành khác:</strong>
+      <p>2-3 ngày cho khu vực trung tâm, 3-7 ngày cho khu vực ngoại thành. (Không tính thứ bảy, chủ nhật hay các ngày lễ tết).</p>
+    </li>
+  </ul>
+
+  <p>Thời gian giao hàng có thể thay đổi theo yêu cầu của khách hàng hoặc do thiên tai, sự kiện đặc biệt. Đơn hàng sẽ được giao tối đa 2 lần, nếu không liên lạc được sẽ không còn hiệu lực.</p>
+
+  <p>Để kiểm tra thông tin hoặc tình trạng đơn hàng, xin vui lòng inbox fanpage hoặc gọi số hotline. Khi hàng được giao, vui lòng ký xác nhận và kiểm tra hàng hóa.</p>
+
+  <p><strong>2. Phí giao hàng:</strong></p>
+  <ul>
+    <li>Phí ship cố định: 30,000đ cho mọi khu vực.</li>
+  </ul>
+</div>
+</body>>

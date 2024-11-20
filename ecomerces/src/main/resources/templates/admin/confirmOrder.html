@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/dashboard}">
+
+<body layout:fragment="admin-content">
+<link rel="stylesheet" th:href="@{/css/admin/confirmOrder.css}">
+    <div class="confirmOrder">
+        <div class="container">
+            <div class="mt-3">
+                <div th:if="${message}" class="mb-3 text-success" >
+                    <div id="success-message" class="alert alert-success" style="display: block;">
+                        <strong>Thành Công!</strong> Thao tác của bạn đã được thực hiện thành công!
+                    </div>
+                </div>
+
+                <div th:if="${error}" class="mb-3 text-danger" >
+                    <div id="message-error" class="alert alert-danger" style="display: block;">
+                        <strong>Thất bại!</strong> Đã tồn tại thương hiệu xin kiểm tra lại!
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="order-header">Xác nhận đơn đặt hàng</h2>
+            <table th:object="${orders}" class="table">
+                <thead>
+                <tr style="background-color: #d7e0ea">
+                    <th>Khách hàng</th>
+                    <th>Sản phẩm</th>
+                    <th style="text-align: center">Thao tác</th>
+                </tr>
+                </thead>
+                <tbody th:each="order : ${WOrders}">
+                <tr>
+                    <td  class="customer-info">
+                        <div><strong>Tên khách hàng: </strong> <span th:text="${order.getUser().getName()}"> tên </span></div>
+                        <div><strong>Địa chỉ: </strong> <span th:text="${order.getShipping_address()}" >địa chỉ</span></div>
+                        <div><strong>Email: </strong> <span th:text="${order.user.getEmail()}" >email</span></div>
+                        <div><strong>Phone: </strong> <span th:text="${order.getUser().getPhone()}">phone</span></div>
+                    </td>
+                    <td>
+                        <div th:each="cartItem : ${order.getCart().getCartItems()}">
+                            <div class="product-info" style="display: flex">
+                                <img  th:src="@{/{image}(image=${cartItem.getProduct().getImage()})}" alt="Sản phẩm">
+                                <div class="product-details" th:text="${cartItem.getProduct().getName()}"><p >Tên sản phẩm</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; justify-content: space-around; margin-top: 10px">
+                                <p class="price" th:text="${cartItem.getPrice()}">
+                                    2.250.000₫
+                                </p>
+                                <p class="quantity" th:text="${'x '+cartItem.getQuantity()}" >
+                                    x1
+                                </p>
+                                <p class="total-price"  th:text="${cartItem.TotalPrice()}" >
+                                    2.250.000₫
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="action" >
+                        <form th:action="@{/admin/order/confirm/{id}(id=${order.id})}" method="post" style="display: inline;">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="action-btn confirm-btn">Xác nhận</button>
+                        </form>
+                        <form th:action="@{/admin/order/cancel/{id}(id=${order.id})}" method="post" style="display: inline;">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="action-btn delete-btn" onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này?')">Hủy đơn</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr class="total-row">
+                    <td></td>
+                    <td colspan="2" >
+                        <p>Tổng cộng thanh toán <span style="color: #c21818" th:text="${order.getPayment_amount()}+'₫'"> 50000 VND</span>  </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="container">
+            <h2>Đơn hàng đã xác nhận</h2>
+
+            <table th:object="${POrders}" class="table" style="background-color: #d7e0ea">
+                <thead>
+                <tr style="background-color: #9bc1ec">
+                    <th>Khách hàng</th>
+                    <th>Sản phẩm</th>
+                    <th>Đã thanh toán</th>
+                </tr>
+                </thead>
+                <tbody th:each="order : ${POrders}">
+                    <tr>
+                        <td  class="">
+                            <div style="display: flex">
+                                <strong style="margin-right: 5px;">Tên khách hàng: </strong>
+                                <span  style="margin-right: 5px;" th:text="${order.getUser().getName()}"> tên </span>
+                                 <strong  style="margin-right: 5px;">Địa chỉ: </strong>
+                                <p th:text="${order.getShipping_address()}">địa chỉ</p>
+                            </div >
+                            <div style="display: flex"><strong>Email: </strong> <span  style="margin-right: 5px;" th:text="${order.user.getEmail()+'  '}" >email</span>
+                          <strong>Phone: </strong> <p th:text="${order.getUser().getPhone()}">phone</p></div>
+                        </td>
+                        <td>
+                            <div th:each="cartItem : ${order.getCart().getCartItems()}">
+                                <div class="product-info" style="display: flex">
+                                    <div class="product-details" th:text="${cartItem.getProduct().getName()}">
+                                        <p >Tên sản phẩm</p>
+                                    </div>
+                                    <span class="quantity" th:text="${'x '+cartItem.getQuantity()}"  style="margin-left: 10px">
+                                        x1
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td >
+                            <p> <span style="color: #c21818" th:text="${order.getPayment_amount()}+'₫'"> 50000 VND</span>  </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container" >
+            <h2>Đơn hàng đã hủy</h2>
+            <table th:object="${COrders}" class="table" style="background-color: #ffffff">
+                <thead>
+                <tr style="background-color: #b3d3f1">
+                    <th>Khách hàng</th>
+                    <th>Sản phẩm</th>
+                    <th>Đã thanh toán</th>
+                </tr>
+                </thead>
+                <tbody th:each="order : ${COrders}">
+                <tr>
+                    <td  class="">
+                        <div style="display: flex">
+                            <strong>Tên khách hàng: </strong>
+                            <p th:text="${'  '+order.getUser().getName()}"> tên </p>
+                            <strong>Địa chỉ: </strong>
+                            <p th:text="${'  '+order.getShipping_address()}+'   '">địa chỉ</p>
+                        </div >
+                        <div style="display: flex"><strong>Email: </strong> <p th:text="${order.user.getEmail()+'  '}" >email</p>
+                            <strong>Phone: </strong> <span th:text="${order.getUser().getPhone()}">phone</span></div>
+                    </td>
+                    <td>
+                        <div th:each="cartItem : ${order.getCart().getCartItems()}">
+                            <div class="product-info" style="display: flex">
+                                <div class="product-details" th:text="${cartItem.getProduct().getName()}">
+                                    <p >Tên sản phẩm</p>
+                                </div>
+                                <span class="quantity" th:text="${'x '+cartItem.getQuantity()}"  style="margin-left: 10px">
+                                        x1
+                                    </span>
+                            </div>
+                        </div>
+                    </td>
+                    <td >
+                        <p> <span style="color: #c21818" th:text="${order.getPayment_amount()}+'₫'"> 50000 VND</span>  </p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

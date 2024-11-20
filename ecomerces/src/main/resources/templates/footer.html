@@ -1,0 +1,116 @@
+<footer th:fragment="footerFragment">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-3 col-md-12 col-12 col-left">
+                    <h4 class="title-menu">
+                        Thông tin công ty
+                    </h4>
+                    <div class="contact-footer">
+                        <div class="item">
+                            <strong>Tên công ty</strong>
+                            <br>
+                            Công ty CP một thành viên SpringCommerce
+                        </div>
+                        <div class="item">
+                            <strong>Địa chỉ</strong>
+                            <br>
+                            113 Nguyễn Hữu Thọ, Quận 7, Tp Hồ chí Minh
+                        </div>
+                        <div class="item">
+                            <strong>Email</strong>
+                            <br>
+                            <a href="#" title="support@SpringCommerce.vn">SpringCommerce@gmail.com</a>
+                        </div>
+                        <div class="item">
+                            <strong>Hotline</strong>
+                            <br>
+                            <a class="tel" href="tel:0000115" title="0000115">0000 0115</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-8 col-lg-9 col-md-12 col-12 col-right">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-12 link_list col-footer">
+                            <h4 class="title-menu">
+                                Về chúng tôi
+                            </h4>
+                            <div class=" list-menu hidden-mobile">
+                                <ul class="list-menu">
+                                    <li><a href="/home" title="Trang chủ">Trang chủ</a></li>
+
+                                    <li><a th:href="@{/introduce}" title="Giới thiệu">Giới thiệu</a></li>
+
+                                    <li><a href="/collections/all" title="Sản phẩm">Sản phẩm</a></li>
+
+                                    <li><a th:href="@{/contact}" title="Liên hệ">Liên hệ</a></li>
+
+                                     <li><a th:href="@{/system}" title="Hệ thống">Hệ thống</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12 link_list col-footer">
+                            <h4 class="title-menu">
+                                Chính sách
+                            </h4>
+                            <div class="list-menu hidden-mobile">
+                                <ul class="list-menu">
+
+                                    <li><a href="/instruction" title="Hướng dẫn mua hàng">Hướng dẫn mua hàng</a></li>
+
+                                    <li><a href="/policy" title="Chính sách đổi trả">Chính sách đổi trả</a></li>
+
+                                    <li><a href="/delivery" title="Chính sách giao hàng">Chính sách giao
+                                            hàng</a></li>
+
+                                    <li><a href="/security" title="Bảo mật thông tin cá nhân">Bảo mật thông
+                                            tin cá nhân</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-12 col-footer">
+                            <div class="module-social">
+                                <h4 class="title-menu">
+                                    Thông tin liên hệ
+                                </h4>
+                                <div class="list-social">
+                                    <a href="#" class="social-button" title="Facebook">
+                                        <img src="/images/facebook.png" alt="Facebook" width="38" height="38">
+                                    </a>
+
+                                    <a href="#" class="social-button" title="Youtube">
+                                        <img src="/images/youtube.png" alt="Youtube" width="38" height="38">
+                                    </a>
+
+                                    <a href="#" class="social-button" title="Email">
+                                        <img src="/images/gmail.png" alt="Email" width="38" height="38">
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="module-payment">
+                                <h4 class="title-menu">Phương thức thanh toán</h4>
+                                <div class="product-trustbadge">
+                                    <span>Thanh toán khi nhận hàng</span>
+                                    <img class="lazyload loaded" src="/images/moto.png" width="38" height="38" data-src=""
+                                         alt="" data-was-processed="true">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wsp">
+        © Bản quyền thuộc về <b>SpringCommerce</b>
+        <span class="center">| |</span>
+        <span class="opacity1">
+            Cung cấp bởi
+            <span>Minh Tú</span>
+        </span>
+    </div>
+</footer>

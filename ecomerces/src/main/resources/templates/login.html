@@ -1,0 +1,93 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+<body layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <div class="login-box">
+        <section class="bread-crumb img" style="background-image: url('/images/bg-2.jpg')">
+            <div class="text">
+                <div class="title-breadcrumb">
+                    Đăng nhập
+                </div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/home" class="custom-link">Trang chủ</a></li>
+                        <li class="breadcrumb-item" aria-current="page">
+                            <strong><span>Đăng nhập</span></strong>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <p th:if="${param.logout}">You have been logged out</p>
+
+        <div th:if="${param.fail}" class="alert alert-danger" style="display: block;">
+            <div id="success" class="success">
+                Email đã tồn tại!
+            </div>
+        </div>
+
+    <div class="login-form">
+        <h2>Đăng nhập</h2>
+        <div class="link-sign-up">
+            <span>Nếu bạn chưa có tài khoảng đăng kí</span>
+            <a href="/home/register" class="btn-link-style">tại đây</a></span>
+        </div>
+        <br>
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">Invalid username or password</div>
+
+
+        <form   th:action="@{/login}" needs-validation  validate id="submit_reg" method="POST">
+            <div class="mb-4">
+                <input  type="text" id="username"  name="username" class="form-control" placeholder="Hãy nhập Email"
+                       required />
+                <div class="invalid-feedback">
+                    Hãy nhập email của bạn.
+                </div>
+            </div>
+            <div class="mb-4">
+                <input  type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu"
+                       required />
+                <div class="invalid-feedback">
+                    Bạn chưa nhập mật khẩu.
+                </div>
+            </div>
+
+            <div class="for-re">
+                <a href="#" class="forgotPass">Quên mật khẩu</a>
+                <div class="remember">
+                    <input type="checkbox" id="remember-me" name="remember-me">
+                    <label>Ghi nhớ tôi</label>
+                </div>
+            </div>
+
+            <div>
+                <button class="btn btn-outline-danger btn-block text-center mt-3 " type="submit" id="submit_btn">
+                    Đăng nhập
+                </button>
+            </div>
+            <br>
+        </form>
+
+
+        <div class="block social-login--facebooks margin-top-15  text-center">
+            <p class=" text-center">
+                Hoặc đăng nhập bằng
+            </p>
+
+            <a href="javascript:void(0)" class="social-login--facebook" onclick="loginFacebook()">
+                <img alt="facebook-login-button" src="/images/facebook-icon.svg">
+                Facebook
+            </a>
+            <a href="javascript:void(0)" class="social-login--google" onclick="loginGoogle()">
+                <img width="149px" height="37px" alt="google-login-button" src="/images/chrome-icon.svg">
+                Google
+            </a>
+        </div>
+    </div>
+</div>
+    <script th:src="@{/js/login.js}"></script>
+</body>
+</html>

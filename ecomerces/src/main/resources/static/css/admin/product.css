@@ -1,0 +1,64 @@
+.product-management {
+    margin-left: 20px;
+    padding: 40px 20px;
+    padding-top: 20px !important;
+}
+
+.btn{
+    margin-left: 10px;
+}
+
+tbody td:nth-child(2) {
+    width: 25%;
+}
+
+tbody td:nth-child(6) {
+    width: 25%;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+}
+
+.product-image {
+    width: 80px !important;
+    height: auto !important;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.product-name img {
+    border-radius: 4px;
+    margin-right: 10px;
+}
+.price-container {
+    display: flex;
+    gap: 20px;
+}
+
+.old-price,
+.new-price {
+    flex: 1;
+}
+.preview{
+    width: 100px;
+}
+
+.product-image {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.product-image:hover {
+    transform: scale(1.5);
+    z-index: 10;
+}
+
+.product-management .btn-sm:hover{
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+
+

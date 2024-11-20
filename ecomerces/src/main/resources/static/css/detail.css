@@ -1,0 +1,232 @@
+
+.productDetail strong{
+    color: #0a0303;
+}
+.productDetail .product-detail {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.productDetail  .product-image {
+    flex: 1;
+    padding: 20px;
+    padding-left: 10px;
+}
+
+.productDetail  .product-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.productDetail  .product-info {
+    flex: 1;
+    padding: 20px;
+}
+
+.productDetail  .product-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.productDetail  .product-price {
+    font-size: 30px;
+    color: red;
+    margin-bottom: 10px;
+}
+
+.productDetail  .product-old-price {
+    font-size: 18px;
+    text-decoration: line-through;
+    color: gray;
+    margin-right: 10px;
+}
+
+.productDetail  .discount {
+    font-size: 16px;
+    color: #f43d08;
+    font-weight: bold;
+    border: 1px solid silver;
+
+}
+
+.productDetail  .purchase-options,
+.productDetail  .benefits {
+    margin-top: 20px;
+}
+
+.productDetail  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #ffcc00;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.productDetail  .button.primary {
+    background-color: #ff9900;
+}
+
+.productDetail  .button.secondary {
+    background-color: #626060;
+    margin-right: 10px;
+}
+
+
+.productDetail  .button.primary:hover {
+    background-color: #d1820c;
+}
+
+.productDetail  .button.secondary:hover {
+    background-color: #454444;
+}
+
+.productDetail  .benefits li {
+    margin: 10px 0;
+}
+
+.productDetail  .tab-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.productDetail  .tabs {
+    display: flex;
+    background-color: #333;
+    width: 500px;
+}
+
+.productDetail  .tab {
+    flex: 1;
+    padding: 10px 10px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    background-color: #555;
+    font-weight: bold;
+}
+
+.productDetail  .tab.active {
+    background-color: #ff6600;
+}
+
+.productDetail  .tab-content {
+    display: none;
+    padding: 20px;
+
+    border-top: none;
+}
+
+.productDetail  .tabs-box {
+    border: 1px solid #ddd;
+}
+
+.productDetail  .tab-content.active {
+    display: block;
+}
+
+/*product*/
+
+.product-container {
+    display: flex;
+    /*justify-content: space-between;*/
+}
+
+.product-container .product {
+    overflow: hidden;
+}
+
+.product:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.product-container .product-image {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #cad0d6;
+}
+
+.product-container  .product-image img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product:hover .product-icons .icon {
+    background-color: white;
+    transition: background-color 0.3s ease;
+    display: block;
+    overflow: hidden;
+}
+
+.product-container .discount-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: #ff5722;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.product-container .product-icons {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-container .icon {
+    border: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 8%;
+    display: none;
+}
+
+.product-container .icon:hover {
+    cursor: pointer;
+    background-color: #ec460e !important;
+}
+
+.product-container .product-details {
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-bottom: 20px;
+}
+
+.product-container .product-name {
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.product-container .product-name:hover {
+    color: #ec460e;
+}
+
+.product-container .product-price {
+    font-size: 18px;
+    color: red;
+}
+
+.product-container .old-price {
+    text-decoration: line-through;
+    color: gray;
+    margin-right: 10px;
+}
+

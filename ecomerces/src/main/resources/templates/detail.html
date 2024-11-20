@@ -1,0 +1,173 @@
+
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+<body layout:fragment="content">
+<link rel="stylesheet" th:href="@{~/css/detail.css}">
+<link rel="stylesheet" th:href="@{~/css/alert.css}">
+
+<div th:if="${success}" class="alert-add-to-cart" style="display: block;">
+    <div id="success" class="success">
+        Sản phẩm đã được thêm vào giỏ hàng thành công!
+    </div>
+    <div class="goto-cart">
+        <a  th:href="@{/cart}" class="btn">Đi tới giỏ hàng</a>
+    </div>
+</div>
+    <div class="productDetail">
+        <div th:object="${product}" class="product-detail ">
+
+            <div class="product-image">
+                <img th:src="@{/{image}(image=${product.image})}" alt="Sản phẩm">
+            </div>
+
+
+            <div  class="product-info">
+                <div>
+                    <p>
+                        <strong>Thương hiệu:</strong>
+                        <span style="color: #ff6600;" th:text="${product.name}">ROLEX</span>
+                    </p>
+
+                    <p>
+                        <strong >Trình trạng:</strong>
+                        <span style="color: #ff6600;" th:if="${product.stock != 0}" th:text="'Còn hàng'"></span>
+                        <span style="color: #ff6600;" th:if="${product.stock == 0}" th:text="'Hết hàng'"></span>
+
+                    </p>
+                </div>
+                <div class=" product-title">Đồng hồ Philippe Auguste PA5009L
+                </div>
+
+                <div class="product-price">
+                    <span class="product-new-price" th:text="${product.newPrice}+' đ'">3.687.000₫</span>
+                    <span class="product-old-price" th:text="${product.oldPrice}+ ' đ'">4.916.000₫</span>
+                </div>
+                <span class="discount" th:text="'Giảm: '+${product.getDiscount()}+ '%'">-25%</span>
+
+                <!-- Tùy chọn mua hàng -->
+                <div class="purchase-options">
+                    <a class="button primary" th:href="@{/cart/detailNow/{id}(id=${product.id})}">MUA NGAY</a>
+                    <a class="button secondary" th:href="@{/cart/detail/{id}(id=${product.id})}"> + GIỎ HÀNG</a>
+                </div>
+
+                <!-- Ưu đãi -->
+                <div class="benefits">
+                    <h4>Ưu đãi dự kiến áp dụng</h4>
+                    <ul>
+                        <li>Giảm thêm 5% cho thành viên có thẻ Member</li>
+                        <li>Giảm thêm 10% cho thành viên có thẻ VIP</li>
+                        <li>Miễn phí vận chuyển toàn quốc</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+        <div class="tab-container">
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" onclick="openTab('description')">Mô tả sản phẩm</div>
+                <div class="tab" onclick="openTab('guide')">Hướng dẫn mua hàng</div>
+            </div>
+
+            <div class="tabs-box">
+                <div id="description" class="tab-content active">
+                    <p>Đồng hồ nam Casio AE-1200WHD-1AVDF thiết kế mặt số LCD vuông kích thước phong cách quân đội, với
+                        những tính năng hiện
+                        đại tiện dụng, kết hợp với dây đeo bằng kim loại đem lại vẻ mạnh mẽ cá tính dành cho phái mạnh.
+                    </p>
+                </div>
+
+                <div id="guide" class="tab-content">
+                    <div class="">
+                        <p><strong>Bước 1</strong>: Truy cập website và lựa chọn sản phẩm cần mua để mua hàng</p>
+                        <p><strong>Bước 2</strong>: Click và sản phẩm muốn mua, màn hình hiển thị ra pop up với các lựa
+                            chọn
+                            sau</p>
+                        <p>Nếu bạn muốn tiếp tục mua hàng: Bấm vào phần tiếp tục mua hàng để lựa chọn thêm sản phẩm vào
+                            giỏ
+                            hàng</p>
+                        <p>Nếu bạn muốn xem giỏ hàng để cập nhật sản phẩm: Bấm vào xem giỏ hàng</p>
+                        <p>Nếu bạn muốn đặt hàng và thanh toán cho sản phẩm này vui lòng bấm vào: Đặt hàng và thanh toán
+                        </p>
+                        <p><strong>Bước 3</strong>: Lựa chọn thông tin tài khoản thanh toán</p>
+                        <p>Nếu bạn đã có tài khoản vui lòng nhập thông tin tên đăng nhập là email và mật khẩu vào mục đã
+                            có
+                            tài khoản
+                            trên hệ thống</p>
+                        <p>Nếu bạn chưa có tài khoản và muốn đăng ký tài khoản vui lòng điền các thông tin cá nhân để
+                            tiếp
+                            tục đăng ký
+                            tài khoản. Khi có tài khoản bạn sẽ dễ dàng theo dõi được đơn hàng của mình</p>
+                        <p>Nếu bạn muốn mua hàng mà không cần tài khoản vui lòng nhấp chuột vào mục đặt hàng không cần
+                            tài
+                            khoản</p>
+                        <p><strong>Bước 4</strong>: Điền các thông tin của bạn để nhận đơn hàng, lựa chọn hình thức
+                            thanh
+                            toán và vận
+                            chuyển cho đơn hàng của mình</p>
+                        <p><strong>Bước 5</strong>: Xem lại thông tin đặt hàng, điền chú thích và gửi đơn hàng</p>
+                        <p>Sau khi nhận được đơn hàng bạn gửi chúng tôi sẽ liên hệ bằng cách gọi điện lại để xác nhận
+                            lại
+                            đơn hàng và
+                            địa chỉ của bạn.</p>
+                        <p>Trân trọng cảm ơn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class=" container mt-3">
+        <h2>Sản phẩm cùng loại</h2>
+        <div class="product-container row" >
+            <div th:each="product : ${productList}" class="product col-lg-3 col-md-4 col-sm-6 mt-3">
+                <div th:object="${product}" >
+                    <div class="product-image">
+                        <span class="discount-badge" th:text="${product.getDiscount()} + '%'"></span>
+                        <img th:src="@{/{image}(image=${product.image})}" alt="đồng hồ">
+
+                        <div class="product-icons">
+                            <a class="icon" th:href="@{/cart/addToCart/{id}(id=${product.id})}"><img src="/images/bag-plus-fill.svg" alt="Add to cart"></a>
+                            <a class="icon" th:href="@{/home/product/{id}(id=${product.id})}">
+                                <img src="/images/eye.svg" alt="View details">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-details">
+                    <a th:href="@{/product/{id}(id=${product.id})}" th:text="${product.name}" class="product-name">Đồng hồ Rolex</a>
+
+                    <div class="product-price">
+                        <!-- Old Price and New Price -->
+                        <span class="old-price" th:text="${product.oldPrice} + 'đ'">6.500.000đ</span>
+                        <span class="new-price" th:text="${product.newPrice} + 'đ'">5.590.000đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script th:src="@{/js/alert.js}"></script>
+<script>
+    function openTab(tabId) {
+
+        var contents = document.querySelectorAll('.tab-content');
+        contents.forEach(function (content) {
+            content.classList.remove('active');
+        });
+
+        var tabs = document.querySelectorAll('.tab');
+        tabs.forEach(function (tab) {
+            tab.classList.remove('active');
+        });
+
+        document.getElementById(tabId).classList.add('active');
+        document.querySelector('.tab[onclick="openTab(\'' + tabId + '\')"]').classList.add('active');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+
+.login-box .bread-crumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  position: relative;
+}
+
+.login-box  .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+}
+
+.login-box  .title-breadcrumb {
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.login-box  .breadcrumb {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  font-size: large;
+}
+.login-box  .breadcrumb-item a.custom-link {
+  color: #fff;
+  text-decoration: none;
+}
+.login-box  .breadcrumb-item a.custom-link:hover {
+  color: blue;
+  font-size: larger;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "->";
+  padding: 0 5px;
+  color: #ed0707;
+}
+
+/* Center the form and add some spacing */
+.login-form {
+  padding-top: 30px;
+  padding-bottom: 80px;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-form h2 {
+  padding-top: 5px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #131111;
+  margin-bottom: 10px;
+}
+
+.link-sign-up {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.link-sign-up a {
+  color: #ed0707;
+  text-decoration: none;
+}
+
+.link-sign-up a:hover {
+  text-decoration: underline;
+}
+
+/* Input fields styling */
+.login-form .form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* Submit button styling */
+.btn-outline-danger {
+  width: 100%;
+  padding: 10px;
+  background-color: #ed0707;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-outline-danger:hover {
+  background-color: #c9302c;
+}
+
+/* Remember me and Forgot password section */
+.for-re {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.for-re .forgotPass {
+  color: #333;
+  text-decoration: none;
+}
+
+.for-re .forgotPass:hover {
+  text-decoration: underline;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+}
+
+.remember input {
+  margin-right: 5px;
+}
+.social-login--facebook:hover,
+.social-login--google:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.social-login--facebook,
+.social-login--google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3b5998;
+  color: white;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 6px 15px;
+  transition: background-color 0.3s ease;
+  width: 150px;
+  cursor: pointer;
+}
+
+.social-login--facebook img,
+.social-login--google img {
+  margin: 0;
+  margin-right: 10px;
+  width: 28px;
+  height: 28px;
+  background-color: white;
+}
+
+.social-login--google {
+  background-color: white;
+  color: gray;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  margin-left: 20px;
+}
+
+.login-box  .invalid-feedback {
+  margin-top: -20px;
+  color: #ed0707;
+  margin-left: 10px;
+}

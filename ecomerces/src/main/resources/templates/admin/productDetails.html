@@ -1,0 +1,76 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/dashboard}">
+
+  <body layout:fragment="admin-content">
+  <link rel="stylesheet" th:href="@{/css/admin/productDetail.css}">
+  <link rel="stylesheet" th:href="@{/css/admin/brand.css}">
+
+  <div class="product-details mt-3 row" th:object="${product}">
+    <div class="col-6">
+      <div class="header-title">
+        <h2>Chi tiết sản phẩm</h2>
+
+      </div>
+
+      <div class="details">
+        <p><strong>ID:</strong></p>
+        <p><span th:text="${product.id}">1</span></p>
+      </div>
+
+      <div class="details">
+        <p><strong>Name:</strong></p>
+        <p><span th:text="${product.name}">Product Name</span></p>
+      </div>
+
+      <div class="details">
+        <p><strong>Giá cũ:</strong></p>
+        <p class="price">
+          <span class="old-price" th:text="${product.oldPrice}"></span>
+        </p>
+      </div>
+      <div class="details">
+        <p><strong>Giá mới:</strong></p>
+        <p class="price">
+          <span class="new-price" th:text="${product.newPrice}"></span>
+        </p>
+        </div>
+
+      <div class="details">
+        <p><strong>Số lượng còn lại:</strong></p>
+        <p><span th:text="${product.stock}">20</span></p>
+      </div>
+
+      <div class="details">
+        <p><strong>Mô tả:</strong></p>
+        <p><span th:text="${product.description}">Product Description</span></p>
+      </div>
+
+      <div class="details">
+        <p><strong>Gender:</strong></p>
+        <p><span th:text="${product.gender}">Unisex</span></p>
+      </div>
+
+      <div class="details">
+        <p><strong>Thương hiệu:</strong></p>
+        <p><span th:text="${product.brand.name}">Brand Name</span></p>
+      </div>
+
+
+      <div class="edit">
+        <a  class="btn btn-success " th:href="@{/admin/product}">Quay lại</a>
+        <a th:href="@{/admin/product/updateProduct/{id}(id=${product.id})}" class="btn btn-primary btn-edit"
+           >Chỉnh sửa</a>
+      </div>
+    </div>
+
+    <div class="col-6 image-container">
+      <div class="image" th:if="${product.image != null}">
+        <p><strong>Image:</strong></p>
+        <img th:src="@{/{image}(image=${product.image})}" alt="Product Image" class="product-image" width="200" height="auto">
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

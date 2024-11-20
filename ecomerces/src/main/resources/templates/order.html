@@ -1,0 +1,134 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+
+<body layout:fragment="content">
+<link rel="stylesheet" th:href="@{/css/order.css}">
+<style>
+    .alert-success{
+        z-index: 1000;
+        position: fixed;
+        top: 30%;
+        left: 30%;
+    }
+</style>
+    <div class="order mt-5 mb-5">
+
+        <div th:if="${orderSuccess}" id="success" class="alert alert-success" >
+            <h3 style="padding-top: 50px">Đặt hàng thành công!</h3>
+            <p>Cảm ơn bạn đã đặt hàng tại <strong style="color: #ed0c0c">SpringEcommerces</strong>.</p>
+            <p>Chúng tôi sẽ gửi xác nhận qua email và thông tin giao hàng đến bạn trong thời gian sớm nhất.</p>
+            <a th:href="@{/}" class="btn btn-primary">Trở về trang chủ</a>
+            <a th:href="@{/cart}" class="btn btn-secondary">Quay lại giỏ hàng</a>
+        </div>
+
+        <main class="container">
+            <header class="main__header">
+                <h1 class="shop__name">
+                    <a href="/" style="color: #ed0c0c;">SpringEcommerces</a>
+                </h1>
+            </header>
+
+            <form th:action="@{/order/addOrder}" method="post">
+            <div class="row">
+                <div class="col-1"></div>
+                <!-- Thông tin đặt hàng -->
+                    <div class="col-md-6 col-lg-5 info">
+                        <section class="section" th:object="${user}">
+                            <h2 class="section__title">Thông tin nhận hàng</h2>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input th:field="*{email}" name="email" id="email" type="email" class="form-control" placeholder="Nhập email" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="billingName">Họ và tên</label>
+                                <input name="billingName" id="billingName" type="text" class="form-control"
+                                    placeholder="Nhập họ tên" th:field="*{name}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="billingPhone">Số điện thoại (tùy chọn)</label>
+                                <input th:field="*{phone}" name="billingPhone" id="billingPhone" type="tel" class="form-control"
+                                    placeholder="Nhập số điện thoại" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="billingAddress">Địa chỉ:</label>
+                                <input  th:field="*{address}" name="billingAddress" id="billingAddress" type="text" class="form-control"
+                                    placeholder="Nhập địa chỉ" required >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="note">Ghi chú (tùy chọn)</label>
+                                <textarea name="note" id="note" class="form-control" placeholder="Nhập ghi chú"></textarea>
+                            </div>
+                        </section>
+                    </div>
+
+                <!-- Thông tin sản phẩm và giá -->
+
+                    <div th:object="${cart}" class="col-md-6 col-lg-5">
+                        <section class="section">
+                            <h2 class="section__title">Thông tin sản phẩm</h2>
+                            <div class="form-group">
+                                <tbody>
+                                <tr th:each="cartItem : ${cart.getCartItems()}">
+                                    <p>
+                                        <div class="product-info">
+                                            <!-- cartItem.getProduct().getImage()-->
+                                            <img th:src="@{/{image}(image=${cartItem.getProduct().getImage()})}" alt="Sản phẩm">
+
+                                            <div class="product-details">
+                                                <p th:text="${cartItem.product.name}">Tên sản phẩm</p>
+                                                <div style="display: flex; align-items: center;">
+                                                    <p class="price" style="color: #ec590a;" th:text="${cartItem.price} + '₫'">
+                                                        2.250.000₫
+                                                    </p>
+                                                    <p class="price" style="margin-left: auto; color: #1f58ed" th:text="'x'+${cartItem.quantity}">
+                                                        2
+                                                    </p>
+                                                </div>
+                                                <p class="total-price" th:text="${cartItem.TotalPrice()} + '₫'"  >
+                                                    2.250.000₫
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </div>
+                        </section>
+
+                        <section class="section">
+                            <h2 class="section__title">Giá cả</h2>
+                            <div class="form-group" style="display: flex">
+                                <div>
+                                    <label for="subtotal">Tạm tính:</label>
+                                    <input id="subtotal" type="text" class="form-control" th:value="${cart.getTotal()}  + '₫'" readonly>
+                                </div>
+                                <div style="margin-left: 80px">
+                                <label for="shippingFee">Phí vận chuyển:</label>
+                                <input id="shippingFee" type="text" class="form-control" th:value="${cart.getFee()}  + '₫'" readonly>
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="total">Tổng tiền thanh toán:</label>
+                                <input id="total" type="text" class="form-control" th:value="${cart.getFee()} + ${cart.getTotal()}  + '₫'" readonly>
+                            </div>
+                        </section>
+                        <button type="submit" class="order-btn btn btn-primary">Đặt hàng</button>
+                        <a th:href="@{/cart}" class="btn">Quay về giỏ hàng</a>
+                    </div>
+                </div>
+                <div id="common-alert" class="alert alert-danger" style="display: none;">
+                    Có lỗi xảy ra khi xử lý. Vui lòng thử lại.
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+<script th:src="@{/js/alert.js}"></script>
+</html>

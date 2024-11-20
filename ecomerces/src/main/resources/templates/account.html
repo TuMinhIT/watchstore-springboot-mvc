@@ -1,0 +1,121 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{template}">
+
+<body layout:fragment="content">
+<link rel="stylesheet" th:href="@{~/css/account.css}">
+<div class="account">
+    <section class="bread-crumb img" style="background-image: url('/images/bg-2.jpg')">
+        <div class="text">
+            <div class="title-breadcrumb">
+                Quản lí tài khoản
+            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/home" class="custom-link">Trang chủ</a></li>
+                    <li class="breadcrumb-item" aria-current="page">
+                        <strong><span>Tài khoản</span></strong>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <div class="container mt-5 ">
+        <div class="row">
+            <h2 class="text-center">Quản lý tài khoản</h2>
+            <div class="mt-3">
+                <div th:if="${message}" class="mb-3 text-success" style="background-color: #2d90ec">
+                    <div id="success-message" class="alert alert-success" style="display: block;">
+                        <strong>Thành Công!</strong> Thao tác của bạn đã được thực hiện thành công!
+                    </div>
+                </div>
+
+                <div th:if="${error}" class="mb-3 text-danger" style="background-color: #c21818">
+                    <div id="message-error" class="alert alert-danger" style="display: block;">
+                        <strong>Thất bại!</strong> Mật khẩu hiện tại không khớp!
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="d-flex flex-column  mt-4">
+                    <a class="nav-link .selected " onclick="showSection('account-info')">Thông tin tài khoản</a>
+                    <a class="nav-link " onclick="showSection('change-password')">Đổi mật khẩu</a>
+                    <a class="nav-link " onclick="showSection('address-book')">Sổ địa chỉ</a>
+                </div>
+            </div>
+
+            <div th:object="${session.user}" class="col-md-5 col-sm-6">
+                <!-- Thông tin tài khoản -->
+                <div  id="account-info" class="mt-3">
+                    <h4>Thông tin tài khoản</h4>
+                    <p>Tên: <span th:text="${session.user.name}">[name]</span></p>
+                    <p>Email: <span th:text="${session.user.email}">[email]</span></p>
+                    <p>Số điện thoại: <span th:text="${session.user.phone}">[phone]</span></p>
+                    <p>Địa chỉ: <span th:text="${session.user.address}">[address]</span></p>
+                </div>
+
+                <!-- Đổi mật khẩu -->
+                <div id="change-password" class="mt-3 hidden">
+                    <h4>Đổi mật khẩu</h4>
+                    <form th:action="@{/account/change-password}" method="post" onsubmit="return validatePasswords()">
+                        <div class="mb-3">
+                            <label for="current-password" class="form-label">Mật khẩu hiện tại</label>
+                            <input type="password" class="form-control" id="current-password" name="current-password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="new-password" class="form-label">Mật khẩu mới</label>
+                            <input type="password" class="form-control" id="new-password" name="new-password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">Xác nhận mật khẩu mới</label>
+                            <input type="password" class="form-control" id="confirm-password" name="confirm-password">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                    </form>
+                    <div id="error" class="mb-3 text-danger" style="display: none;">
+                        Mật khẩu không khớp
+                    </div>
+                </div>
+
+                <!-- Sổ địa chỉ -->
+                <div id="address-book" class="mt-3 hidden">
+                    <h4>Sổ địa chỉ</h4>
+                    <div  class="mt-3">
+                        <div class="current-address" th:if="${session.user.address}">
+                            <p th:text="${session.user.address}"/>
+                                <a th:href="@{/account/deleteAddress}" class="delete" onclick="return confirmDelete();" >X</a>
+                            <script>
+                                function confirmDelete() {
+                                    return confirm("Bạn có chắc chắn muốn xóa không?");
+                                }
+                            </script>
+                        </div>
+                    </div>
+
+                    <div th:if="${session.user.address == null}" class="mt-3">
+                        <p>
+                            Bạn chưa thêm địa chỉ nào! Hãy thêm địa chỉ !
+                        </p>
+                        <form th:action="@{/account/addAddress}"  method="POST" onsubmit="return validateForm()" class="mt-3" >
+                            <div class="mb-3">
+                                <label for="new-address" class="form-label">Thêm địa chỉ mới</label>
+                                <input type="text" class="form-control" id="new-address"  name="new-address" placeholder="165 Âu Dương Lân, Phường 2, Quận 8">
+                            </div>
+                            <div id="error-message" class="text-danger" style="display: none;">Vui lòng nhập địa chỉ!</div>
+                            <button type="submit" class="btn btn-primary">Thêm địa chỉ</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{~/js/account.js}"></script>
+</body>
+</html>

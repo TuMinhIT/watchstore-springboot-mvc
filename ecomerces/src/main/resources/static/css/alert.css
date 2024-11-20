@@ -1,0 +1,33 @@
+
+.alert-add-to-cart{
+    padding: 20px;
+    background-color: rgb(179, 211, 241);
+    color: #131111;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    position: fixed;
+    top: 50px;
+    right: 100px;
+    z-index: 1000;
+}
+.success{
+    font-size: 16px;
+}
+
+.alert-add-to-cart .btn {
+    background-color: #2fa522;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+
+
+}
+.goto-cart{
+    align-content: flex-start;
+    text-align: left;
+}
+.alert-add-to-cart .btn:hover {
+    background-color: #248a1a;
+}

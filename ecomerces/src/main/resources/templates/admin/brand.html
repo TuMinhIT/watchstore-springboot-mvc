@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/dashboard}"
+      lang="en">
+
+<body layout:fragment="admin-content">
+<link rel="stylesheet" th:href="@{/css/admin/brand.css}">
+
+    <main class="brand-management">
+        <div class="container">
+            <div class="header-title">
+                <h2>Brand List</h2>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBrandModal">Add New
+                    Brand</button>
+            </div>
+
+            <div class="mt-3">
+                <div th:if="${message}" class="mb-3 text-success" >
+                    <div id="success-message" class="alert alert-success" style="display: block;">
+                        <strong>Thành Công!</strong> Thao tác của bạn đã được thực hiện thành công!
+                    </div>
+                </div>
+
+                <div th:if="${error}" class="mb-3 text-danger" >
+                    <div id="message-error" class="alert alert-danger" style="display: block;">
+                        <strong>Thất bại!</strong> Đã tồn tại thương hiệu xin kiểm tra lại!
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Brand Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody th:each="brand : ${listBrand}">
+                <tr>
+                    <td th:text="${brand.id}">[id]</td>
+
+                    <td class="brand-name">
+                            <img th:src="@{/{image}(image=${brand.image})}" alt="Brand Image" class="brand-image">
+                            <p class="name" th:text="${brand.name}">Tên thương hiệu</p>
+                    </td>
+
+                    <td th:text="${brand.description}" style=" text-align: left; max-width: 500px"  >Mô tả</td>
+                    <td style="width: 80px;">
+                        <div class="table-actions" >
+                                <a th:href="@{/admin/brand/edit/{id}(id=${brand.id})}" class="btn btn-warning btn-sm">Sửa</a>
+                            <form th:action="@{/admin/brand/delete/{id}(id=${brand.id})}" method="post" style="display: inline;">
+                                <input type="hidden" name="_method" value="delete" />
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này?');">Xóa</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h3 th:if="${listBrand == null || listBrand.isEmpty()}">Chưa có thương hiệu, hãy thêm mới.</h3>
+        </div>
+
+            <!-- Modal for Editing Brand -->
+        <div th:if="${brandEdit}" class="modal-edit">
+            <div class="modal-header">
+                <h5 class="modalEdit-title" id="EditProductModalLabel">Chỉnh sửa thương hiệu</h5>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/admin/brand/edit/{id}(id=${brandEdit.id})}"
+                      th:object="${brandEdit}" method="post" enctype="multipart/form-data">
+                    <input type="text" style="display: none" class="form-control" id="brandEditId" th:field="*{id}" readonly>
+                    <div class="mb-3">
+                        <label for="brandName" class="form-label">Tên thương hiệu</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brandDescription" class="form-label">Mô tả</label>
+                        <textarea class="form-control" th:field="*{description}" id="brandEditDescription" rows="3" required></textarea>
+                    </div>
+
+                    <!-- Product Image Upload and Preview -->
+
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Hình ảnh đại diện thương hiệu</label>
+                        <input type="file" id="editFileInput" name="editFile" onchange="editPreviewImage(event)" >
+                        <br><br>
+                        <input th:field="*{image}" style="display: none;">
+                        <img id="editPreview" class="preview" th:src="@{/${brandEdit.image}}"
+                             alt="Image Preview" style="max-width: 200px;">
+                        <br><br>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close-btn">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Lưu lại</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for Adding Brand -->
+        <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBrandModalLabel">Thêm thương hiệu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/admin/brand/addNew}"
+                              th:object="${brand}"
+                              method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="brandName" class="form-label">Tên thương hiệu</label>
+                                <input type="text" th:field="*{name}" class="form-control" id="brandName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="brandDescription" class="form-label">Mô tả</label>
+                                <textarea class="form-control" th:field="*{description}" id="brandDescription" rows="3" required></textarea>
+                            </div>
+
+                            <!-- Brand Image Upload and Preview -->
+                            <div class="mb-3">
+                                <label for="fileInput" class="form-label">Hình ảnh đại diện thương hiệu</label>
+                                <input type="file" id="fileInput" name="file" onchange="previewImage(event)" required>
+                                <br><br>
+                                <img id="Preview" class="preview" src="" alt="Image Preview" >
+                                <br><br>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Lưu lại</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script>
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('Preview');
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+            preview.style.display = 'none';
+        }
+    }
+
+    document.getElementById('close-btn').addEventListener('click', function () {
+        var modal = document.querySelector('.modal-edit');
+
+        // Hide the modal by setting display to 'none'
+        modal.style.display = 'none';
+    });
+
+
+    function editPreviewImage(event) {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        const preview = document.getElementById("editPreview");
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+</body>
+</html>
+
+
+
+
